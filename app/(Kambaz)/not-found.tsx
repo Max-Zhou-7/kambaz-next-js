@@ -1,19 +1,16 @@
-import { ReactNode } from "react";
-import CourseNavigation from "./Navigation";
-export default async function CoursesLayout(
-  { children, params }: Readonly<{ children: ReactNode; params: Promise<{ id: string }> }>) {
- const { cid } = await params;
+import Link from "next/link";
+
+
+export default function NotFound() {
  return (
-   <div id="wd-courses">
-     <h2>Courses {cid}</h2>
-     <hr />
-     <table>
-       <tbody>
-         <tr>
-           <td valign="top" width="200"> <CourseNavigation /> </td>
-           <td valign="top" width="100%"> {children} </td>
-         </tr>
-       </tbody>
-     </table>
+   <div className="p-4">
+     <h2 className="text-danger">Page Not Found</h2>
+     <p>
+       The requested page could not be found. Please check the page URL or
+       return to the dashboard.
+     </p>
+     <Link href="/Dashboard" className="btn btn-primary mt-3">
+       Back to Dashboard
+     </Link>
    </div>
 );}
