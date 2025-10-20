@@ -1,5 +1,5 @@
 export default function AddingAndRemovingToFromArrays() {
-  let numberArray1 = [1, 2, 3, 4, 5];
+ let numberArray1 = [1, 2, 3, 4, 5];
   let stringArray1 = ["string1", "string2"];
   let todoArray = [<li>Buy milk</li>, <li>Feed the pets</li>];
   numberArray1.push(6); // adding new items
@@ -10,8 +10,8 @@ export default function AddingAndRemovingToFromArrays() {
   return (
     <div id="wd-adding-removing-from-arrays">
       <h4>Add/remove to/from arrays</h4>
-      numberArray1 = {numberArray1} <br />
-      stringArray1 = {stringArray1} <br />
+      numberArray1 = {numberArray1.join(", ")} <br />
+      stringArray1 = {stringArray1.join(", ")} <br />
       Todo list:
       <ol>{todoArray}</ol><hr />
     </div> );}
