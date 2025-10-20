@@ -1,4 +1,7 @@
 "use client";
+import { useParams } from "next/navigation";  
+import Link from "next/link";
+import * as db from "../../../../Database";
 import { FormControl,
           FormLabel,
           Col,
@@ -10,15 +13,36 @@ import { FormControl,
  } from "react-bootstrap";
 
 import { SlCalender } from "react-icons/sl";
+
+interface Assignment {
+  _id: string;
+  title: string;
+  course: string;
+  description: string;
+  points: number;
+  dueDate: string;
+  availableFromDate: string;
+  availableUntilDate: string;
+  assignmentGroup?: string;
+  displayGradeAs?: string;
+  submissionType?: string;
+}
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams();
+  const assignment = db.assignments.find((a: Assignment) => a._id === aid);
+    if (!assignment) {
+    return <div>Assignment not found</div>;
+  }
   return (
     <div id="wd-assignments-editor">
       <label htmlFor="wd-name"><b>Assignment Name</b></label><br/><br/>
-      <FormControl id="wd-name" defaultValue="A1" className="mb-3" />
+      <FormControl id="wd-name" defaultValue={assignment.title} className="mb-3" />
+
       <Row className="mb-3" controlId="textarea2">
         <Col sm={20}>
 <FormControl   as="textarea" style={{ height: "100px" }} 
 id="wd-description"
+defaultValue={assignment.description}
        placeholder=" The assignment is available online Submit a link to the landing page of"
       />
       </Col>
@@ -30,7 +54,7 @@ id="wd-description"
             <Col sm={10}>
 
       
-            <FormControl id="wd-points" defaultValue={100} />
+            <FormControl id="wd-points" defaultValue={assignment.points} />
             </Col>
             </Row>
 
@@ -53,7 +77,8 @@ id="wd-description"
       <Row className="mb-3">
         <FormLabel column sm={2} htmlFor="wd-display-grade-as">Display Grade as</FormLabel>
         <Col sm={10}>
-          <FormSelect id="wd-display-grade-as">
+          <FormSelect id="wd-display-grade-as"
+          defaultValue={assignment.displayGradeAs || "PERCENTAGE"}>
             <option value="PERCENTAGE">Percentage</option>
             <option value="DECIMAL">Decimal</option>
           </FormSelect>
@@ -69,6 +94,7 @@ id="wd-description"
 
         <Col sm={10}>
           <FormSelect id="wd-submission-type">
+           defaultValue={assignment.submissionType || "ONLINE"}
             <option value="ONLINE">Online</option>
           </FormSelect>
         </Col>
@@ -105,7 +131,7 @@ id="wd-description"
 
         <Col sm={10}>
             <InputGroup>
-            <FormControl  id="wd-due-date" defaultValue="2024-05-13" />
+            <FormControl  id="wd-due-date" defaultValue={assignment.dueDate}  />
             <InputGroup.Text><SlCalender /></InputGroup.Text>
           </InputGroup>
         </Col>
@@ -117,7 +143,7 @@ id="wd-description"
     <FormLabel className="mb-2"><b>Available from</b></FormLabel>
         
           <InputGroup>
-            <FormControl  id="wd-available-from" defaultValue="2024-05-06" />
+            <FormControl  id="wd-available-from" defaultValue={assignment.availableFromDate }/>
             <InputGroup.Text><SlCalender /></InputGroup.Text>
           </InputGroup>
         </Col>
@@ -127,7 +153,7 @@ id="wd-description"
     
           <InputGroup>
   
-            <FormControl  id="wd-available-until" defaultValue="2024-05-20" />
+            <FormControl  id="wd-available-until" defaultValue={assignment.availableUntilDate}  />
             <InputGroup.Text><SlCalender /></InputGroup.Text>
           </InputGroup>
         </Col>
@@ -136,8 +162,18 @@ id="wd-description"
 </Col>
 </Row>
       <div style={{ textAlign: "right" }}>
-        <button id="wd-cancel" className="btn btn-secondary me-2">Cancel</button>
-        <button id="wd-save" className="btn btn-danger">Save</button>
+        <Link 
+          href={`/Courses/${cid}/Assignments`}
+          className="btn btn-secondary me-2"
+        >
+          Cancel
+        </Link>
+        <Link 
+          href={`/Courses/${cid}/Assignments`}
+          className="btn btn-danger"
+        >
+          Save
+        </Link>
       </div>
     </div>
   );

@@ -7,7 +7,11 @@ import AssignmentControls from "./AssignmentControls";
 import { FaCaretDown } from "react-icons/fa";
 import { LuNotebookPen } from "react-icons/lu";
 import Link from "next/link";
+import * as db from "../../../Database";
+import { useParams } from "next/navigation";
 export default function Assignments() {
+  const assignments = db.assignments;
+  const {cid} = useParams();
   return (
     <div>
       <AssignmentControls /><br /><br /><br />
@@ -21,21 +25,24 @@ export default function Assignments() {
         <AssignmentControlButtons />
 </div>
 <ListGroup className="wd-lessons rounded-0">
-<ListGroupItem className="wd-lesson p-3 ps-1">
+  {assignments
+    .filter((assignments: Assignment) => assignments.course === cid )
+    .map((assignments: any) => (
+      <ListGroupItem key={assignments._id} className="wd-lesson p-3 ps-1">
   <Row className="align-items-center">
     <Col xs="auto">
       <BsGripVertical className="me-2 fs-3" />
       <LuNotebookPen className="me-1" />
     </Col>
     <Col>
-      <Link href="/Courses/1234/Assignments/123" className="wd-assignment-link fw-bold text-secondary text-decoration-none">
-        A1
+      <Link href={`/Courses/${cid}/Assignments/${assignments._id}`} className="wd-assignment-link fw-bold text-secondary text-decoration-none">
+        {assignments.title}
       </Link>
       <div className="text-muted small" >
       <span className="text-danger">
-        Multiple Modules </span>| <b>Not available until</b> May 6 at 12:00am |</div>
+        Multiple Modules </span>| <b>Not available until</b> {assignments.availableFrom} |</div>
         <div className="text-muted small">
-        <b>Due</b> May 13 at 11:59pm | 100 pts
+        <b>Due</b> {assignments.dueDate} | {assignments.points} pts
       </div>
     </Col>
     <Col xs="auto">
@@ -43,52 +50,8 @@ export default function Assignments() {
     </Col>
   </Row>
   </ListGroupItem>
-  <ListGroupItem className="wd-lesson p-3 ps-1">
-  <Row className="align-items-center">
-    <Col xs="auto">
-      <BsGripVertical className="me-2 fs-3" />
-      <LuNotebookPen className="me-1"
-       />
-    </Col>
-    <Col> <Link href="/Courses/1234/Assignments/123"
-            className="wd-assignment-link
-             fw-bold text-secondary text-decoration-none" >
-      A2 
-        </Link><div className="text-muted small" >
-      <span className="text-danger">
-        Multiple Modules </span>| <b>Not available until</b> May 13 at 12:00am |</div>
-        <div className="text-muted small">
-        <b>Due</b> May 20 at 11:59pm | 100 pts
-      </div>
-    </Col>
-    <Col xs="auto">
-      <SubAssignmentControlButton />
-    </Col>
-  </Row>
-  </ListGroupItem>
-<ListGroupItem className="wd-lesson p-3 ps-1">
-  <Row className="align-items-center">
-    <Col xs="auto">
-      <BsGripVertical className="me-2 fs-3" />
-      <LuNotebookPen className="me-1" />
-    </Col>
-    <Col> <Link href="/Courses/1234/Assignments/123"
-             className="wd-assignment-link
-              fw-bold text-secondary text-decoration-none" >
-        A3
-          </Link><div className="text-muted small" >
-      <span className="text-danger">
-        Multiple Modules </span>| <b>Not available until</b> May 20 at 12:00am |</div>
-        <div className="text-muted small">
-        <b>Due</b> May 27 at 11:59pm | 100 pts
-      </div>
-    </Col> 
-    <Col xs="auto">
-      <SubAssignmentControlButton />
-    </Col>
-  </Row>
+    ))}
 
-</ListGroupItem>
   </ListGroup>
   </ListGroupItem>
      
