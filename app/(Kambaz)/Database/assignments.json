@@ -1,6 +1,8 @@
 [
   { "_id": "A101", "title": "Propulsion Assignment", "course": "RS101",
-  "availableFrom":"May 6 at 12:00am ", "dueDate":"May 20 at 11:59pm", "points":100 },
+  "availableFrom":"May 6 at 12:00am ", "dueDate":"May 20 at 11:59pm", "points":100,
+  "submissionType":"ONLINE", "displayGradeAs":"POINTS", "untilDate":"May 20 at 11:59pm" ,
+"description":"Complete the propulsion problems provided in the assignment document." },
   { "_id": "A102", "title": "Combustion Analysis", "course": "RS101",
 "availableFrom":"May 7 at 12:00am ", "dueDate":"May 21 at 11:59pm", "points":100 },
   { "_id": "A103", "title": "Nozzle Design Project", "course": "RS101",

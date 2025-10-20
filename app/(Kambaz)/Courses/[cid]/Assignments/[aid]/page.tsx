@@ -14,22 +14,9 @@ import { FormControl,
 
 import { SlCalender } from "react-icons/sl";
 
-interface Assignment {
-  _id: string;
-  title: string;
-  course: string;
-  description: string;
-  points: number;
-  dueDate: string;
-  availableFromDate: string;
-  availableUntilDate: string;
-  assignmentGroup?: string;
-  displayGradeAs?: string;
-  submissionType?: string;
-}
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
-  const assignment = db.assignments.find((a: Assignment) => a._id === aid);
+  const assignment = db.assignments.find((a:db.Assignment) => a._id === aid);
     if (!assignment) {
     return <div>Assignment not found</div>;
   }
@@ -39,7 +26,7 @@ export default function AssignmentEditor() {
       <FormControl id="wd-name" defaultValue={assignment.title} className="mb-3" />
 
       <Row className="mb-3" controlId="textarea2">
-        <Col sm={20}>
+        <Col sm={12}>
 <FormControl   as="textarea" style={{ height: "100px" }} 
 id="wd-description"
 defaultValue={assignment.description}
@@ -93,8 +80,8 @@ defaultValue={assignment.description}
 
 
         <Col sm={10}>
-          <FormSelect id="wd-submission-type">
-           defaultValue={assignment.submissionType || "ONLINE"}
+          <FormSelect id="wd-submission-type"
+           defaultValue={assignment.submissionType || "ONLINE"}>
             <option value="ONLINE">Online</option>
           </FormSelect>
         </Col>
@@ -143,7 +130,7 @@ defaultValue={assignment.description}
     <FormLabel className="mb-2"><b>Available from</b></FormLabel>
         
           <InputGroup>
-            <FormControl  id="wd-available-from" defaultValue={assignment.availableFromDate }/>
+            <FormControl  id="wd-available-from" defaultValue={assignment.availableFrom}/>
             <InputGroup.Text><SlCalender /></InputGroup.Text>
           </InputGroup>
         </Col>
@@ -153,7 +140,7 @@ defaultValue={assignment.description}
     
           <InputGroup>
   
-            <FormControl  id="wd-available-until" defaultValue={assignment.availableUntilDate}  />
+            <FormControl  id="wd-available-until" defaultValue={assignment.untilDate}  />
             <InputGroup.Text><SlCalender /></InputGroup.Text>
           </InputGroup>
         </Col>

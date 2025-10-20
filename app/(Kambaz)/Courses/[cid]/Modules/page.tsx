@@ -21,8 +21,8 @@ export default function Modules() {
 <ModulesControls /><br /><br /><br /><br />
   <ListGroup className="rounded-0" id="wd-modules">
             {modules
-          .filter((module: any) => module.course === cid)
-          .map((module: any) => (
+          .filter((module: db.Module) => module.course === cid)
+          .map((module: db.Module) => (
     <ListGroupItem
     key ={module._id}
     className="wd-module p-0 mb-5 fs-5 border-gray">
@@ -31,7 +31,7 @@ export default function Modules() {
       </div>
       {module.lessons && (
       <ListGroup className="wd-lessons rounded-0">
-        {module.lessons.map((lesson: any) => (
+        {module.lessons.map((lesson: db.Lesson) => (
         <ListGroupItem
         key={lesson._id}
         className="wd-lesson p-3 ps-1">
