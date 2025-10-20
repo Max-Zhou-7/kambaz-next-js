@@ -8,7 +8,7 @@ import { BsGripVertical } from "react-icons/bs";
 import ModulesControls from "./ModulesControls";
 import ModuleControlButtons from "./ModuleControlButtons";
 import LessonControlButtons from "./LessonControlButtons";
-
+import type { Module } from "../../../Database";
 export default function Modules() {
     const { cid } = useParams();
   const modules = db.modules;
@@ -21,8 +21,8 @@ export default function Modules() {
 <ModulesControls /><br /><br /><br /><br />
   <ListGroup className="rounded-0" id="wd-modules">
             {modules
-          .filter((module: db.Module) => module.course === cid)
-          .map((module: db.Module) => (
+          .filter((module: Module) => module.course === cid)
+          .map((module: Module) => (
     <ListGroupItem
     key ={module._id}
     className="wd-module p-0 mb-5 fs-5 border-gray">
