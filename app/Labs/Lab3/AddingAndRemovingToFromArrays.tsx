@@ -1,8 +1,6 @@
 export default function AddingAndRemovingToFromArrays() {
-  // eslint-disable-next-line prefer-const
-  let numberArray1 = [1, 2, 3, 4, 5];
-  // eslint-disable-next-line prefer-const
-  let stringArray1 = ["string1", "string2"];
+   const numberArray1 = [1, 2, 3, 4, 5];
+   const stringArray1 = ["string1", "string2"];
   
   // Add items (creates new arrays)
   const numberArray2 = [...numberArray1, 6];
