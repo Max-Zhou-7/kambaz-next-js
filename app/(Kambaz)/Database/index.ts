@@ -56,6 +56,7 @@ export interface Assignment {
     submissions?: Submission[];
     displayGradeAs?: string;
     assignmentGroup?: string;
+    editing?: boolean;
 }
 export interface Submission {
     _id: string;

@@ -24,7 +24,7 @@ export default function KambazNavigation() {
         action className="bg-black border-0 text-center">
         <img src="/images/NEU.jpg" width="75px" /></ListGroupItem>
       {links.map(({path, label, icon:Icon}) => (
-        <ListGroupItem key={path} as={Link} href={path}
+        <ListGroupItem key={label} as={Link} href={path}
           className={`text-center border-0
               ${pathname.includes(label) ? "text-danger bg-white" : "text-white bg-black"}`}>
           {Icon({ className: "fs-1 text-danger"})}
