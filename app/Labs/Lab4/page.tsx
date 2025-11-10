@@ -11,7 +11,7 @@ import StringStateVariables from "./StringStateVariables";
 import ArrayStateVariable from "./ArrayStateVariable";
 import ObjectStateVariable from "./ObjectStateVariable";
 import DateStateVariable from "./DateStateVariable";
-import ReduxExamples from "./ReduxExamples/page";
+import ReduxExamples from "./ReduxExamples";
 
 
 import store from "./store";
