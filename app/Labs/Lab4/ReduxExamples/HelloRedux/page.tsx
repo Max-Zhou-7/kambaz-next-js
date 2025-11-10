@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store";
 export default function HelloRedux() {
   const { message } = useSelector((state: any) => state.helloReducer);
   return (
