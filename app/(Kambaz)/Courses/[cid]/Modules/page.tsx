@@ -1,6 +1,5 @@
 "use client";
 import { useParams } from "next/navigation";
-import * as db from "../../../Database";
 import { useState } from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 import { BsGripVertical } from "react-icons/bs";
@@ -25,7 +24,8 @@ export default function Modules() {
         setModuleName={setModuleName} 
         moduleName={moduleName} 
         addModule={() => {
-          dispatch(addModule({ name: moduleName, course: cid as string }));
+          dispatch(addModule({ name: moduleName, 
+            course: cid as string, }));
           setModuleName("");
         }} 
       />

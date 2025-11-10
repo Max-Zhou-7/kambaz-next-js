@@ -217,7 +217,7 @@ export default function Assignments() {
         </Modal.Header>
         <Modal.Body>
           Are you sure you want to delete the assignment{" "}
-          <strong>"{assignmentToDelete?.title}"</strong>?
+          <strong>&quot;{assignmentToDelete?.title}&quot;</strong>?
           <br />
           <span className="text-danger">This action cannot be undone.</span>
         </Modal.Body>

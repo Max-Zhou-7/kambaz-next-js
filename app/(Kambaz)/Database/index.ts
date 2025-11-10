@@ -25,9 +25,10 @@ export interface Course {
     number: string;
     startDate: string;
     endDate: string;
-    department: string;
-    credits: number;
+    department?: string;
+    credits?: number;
     description: string;
+    image?: string;
 }
 
 export interface Module {
@@ -36,6 +37,7 @@ export interface Module {
     description: string;
     course: string;
     lessons?: Lesson[];
+    editing?: boolean;
 }
 export interface Lesson {
     _id: string;

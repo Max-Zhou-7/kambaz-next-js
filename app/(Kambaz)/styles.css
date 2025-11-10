@@ -54,3 +54,7 @@ body * { font-family:
 .wd-border-solid { border-style: solid; }
 .wd-padding-fat {
   padding: 0.1rem 0.5rem; }
+
+.wd-indent {
+  padding: 0  30px;
+}

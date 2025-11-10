@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { courses } from "../Database";
 import { v4 as uuidv4 } from "uuid";
+import { enrollCourse } from "../Dashboard/reducer";
 const initialState = {
  courses: courses,
 };
@@ -22,14 +23,9 @@ const coursesSlice = createSlice({
        c._id === course._id ? course : c
      );
    },
- },
 
 
-    updateCourse: (state, { payload: course }) => {
-     state.courses = state.courses.map((c: any ) =>
-       c._id === course._id ? course : c
-     );
-   }
+}
 });
 export const { addNewCourse, deleteCourse, updateCourse } =
  coursesSlice.actions;

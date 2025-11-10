@@ -1,7 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import * as db from "../Database";
+import type { Enrollment } from "../Database";
 
-const initialState = {
-  enrollments: [] as { user: string; course: string }[],
+interface EnrollmentState {
+  enrollments: Enrollment[];
+  showAllCourses: boolean;
+}
+
+const initialState: EnrollmentState = {
+  enrollments: db.enrollments,
   showAllCourses: false,
 };
 
@@ -9,20 +16,20 @@ const enrollmentsSlice = createSlice({
   name: "enrollments",
   initialState,
   reducers: {
-    setEnrollments: (state, { payload }) => {
-      state.enrollments = payload;
+    setEnrollments: (state, action: PayloadAction<Enrollment[]>) => {
+      state.enrollments = action.payload;
     },
-    enrollCourse: (state, { payload: { userId, courseId } }) => {
+    enrollCourse: (state, action: PayloadAction<Enrollment>) => {
       const exists = state.enrollments.find(
-        (e) => e.user === userId && e.course === courseId
+        (e) => e.user === action.payload.user && e.course === action.payload.course
       );
       if (!exists) {
-        state.enrollments.push({ user: userId, course: courseId });
+        state.enrollments.push(action.payload);
       }
     },
-    unenrollCourse: (state, { payload: { userId, courseId } }) => {
+    unenrollCourse: (state, action: PayloadAction<string>) => {
       state.enrollments = state.enrollments.filter(
-        (e) => !(e.user === userId && e.course === courseId)
+        (e) => e._id !== action.payload
       );
     },
     toggleShowAllCourses: (state) => {
