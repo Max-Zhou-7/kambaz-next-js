@@ -10,4 +10,5 @@ const store = configureStore({
     addReducer,
     todosReducer,
 },});
+export type RootState = ReturnType<typeof store.getState>;
 export default store;
