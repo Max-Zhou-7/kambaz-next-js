@@ -38,7 +38,7 @@ export default function Lab4() {
         <ArrayStateVariable />
         <ParentStateComponent />
         <ChildStateComponent counter={0} setCounter={() => {}} />
-       
+
     </div>
     </Provider>   
 );}

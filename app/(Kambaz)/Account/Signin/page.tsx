@@ -6,11 +6,12 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import * as db from "../../Database";
 import { FormControl, Button } from "react-bootstrap";
+import * as client from "../client";
 
 export default function Signin() {
    const [credentials, setCredentials] = useState<any>({});
  const dispatch = useDispatch();
- const signin = () => {
+ const signin = async() => {
    const user = db.users.find(
      (u: any) =>
        u.username === credentials.username &&
